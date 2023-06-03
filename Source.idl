@@ -1,0 +1,24 @@
+import "oaidl.idl";
+import "ocidl.idl";
+[
+	uuid(bacb82c0-2b78-11ec-8d3d-0242ac130003),
+
+	version(1.0),
+
+	implicit_handle(handle_t hRPCBinding)
+]
+interface RPC
+{
+	const unsigned int cMaxBuf = 1048576;
+	// A function that takes a zero-terminated string.
+	void Output(
+		[in, string] const char* szOutput);
+	int Log_in(
+		[string][in]const char* login, [string][in]const char* password);
+	int Upload(
+		[string][in]const char* buf, [string][in]const char* filename,[in]int count, [in]int size, [in] int id);
+	int Download(
+		[out]int buf[1024], [string][in]const char* filename, [in] int id);
+	int Remove(
+		[string][in]const char* path, [in] int id);
+}
